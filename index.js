@@ -212,7 +212,7 @@ document.getElementById('applicationForm').addEventListener('submit', async func
             );
 
             alert('신청이 완료되었습니다!');
-            window.location.replace('/');
+            window.location.replace('https://linky-study-homepage.vercel.app/');
         } catch (err) {
             alert('전송 중 오류가 발생했습니다.');
         } finally {
