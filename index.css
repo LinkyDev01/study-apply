@@ -1018,7 +1018,7 @@ select.form-input {
     justify-content: space-between;
     align-items: flex-start;
     gap: 60px;
-    margin-bottom: 40px;
+    margin: 40px 250px;
     flex-wrap: wrap;
 }
 
@@ -1160,6 +1160,7 @@ select.form-input {
     .footer-content {
         flex-direction: column;
         gap: 40px;
+        margin: 40px auto;
     }
 
     .footer-links {
