@@ -85,6 +85,16 @@ function validateStep(stepNumber) {
             }
         }
 
+        // 반 선택 체크 (라디오 버튼)
+        else if (input.name === "level" && input.type === "radio") {
+            const classRadios = step.querySelectorAll('input[name="class"]');
+            const isClassSelected = Array.from(classRadios).some(radio => radio.checked);
+            if (!isClassSelected) {
+                alert('희망 수준을 선택해주세요.');
+                return false;
+            }
+        }
+
         // 성별 선택 체크 (라디오 버튼)
         else if (input.name === "gender" && input.type === "radio") {
             const genderRadios = step.querySelectorAll('input[name="gender"]');
@@ -187,6 +197,7 @@ document.getElementById('applicationForm').addEventListener('submit', async func
             name: this.name.value,
             language: this.language.value,
             class: this.class.value,
+            level: this.level.value,
             gender: this.gender.value,
             age: this.age.value,
             phone: this.phone.value,
@@ -202,7 +213,7 @@ document.getElementById('applicationForm').addEventListener('submit', async func
 
         try {
             await fetch(
-              'https://script.google.com/macros/s/AKfycbxRD1H4ufVOFyYmr_ttn-ynqBoh-DBDEBJCQQxMrOgY3JcdFArkT9T8fw0Emc3mVuA/exec',
+              'https://script.google.com/macros/s/AKfycbzV21I9aTB92ncblg5kqCFcoNxOKAIm4nBrRXkBpdojd5D6EpPksyIRESoNw12XBBA/exec',
               {
                 method: 'POST',
                 mode: 'no-cors',
