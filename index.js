@@ -58,8 +58,8 @@ function validateStep(stepNumber) {
         else if (input.name === "age") {
             const age = Number(input.value);
 
-            if (isNaN(age) || age < 19 || age > 35) {
-                alert('만 19세 ~ 35세만 신청이 가능합니다.');
+            if (isNaN(age) || age < 19 || age > 39) {
+                alert('만 19세 ~ 39세만 신청이 가능합니다.');
                 input.focus();
                 return false;
             }
