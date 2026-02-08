@@ -927,6 +927,7 @@ select.form-input {
     font-size: 14px;
     line-height: 1.6;
     font-weight: 300;
+    word-break: keep-all;
 }
 
 .form-privacy-notice {
