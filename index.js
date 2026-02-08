@@ -174,12 +174,13 @@ document.getElementById('applicationForm').addEventListener('submit', async func
         introduction: this.introduction.value,
         source: this.source.value || '',
         referrer: this.referrer.value || '',
-        privacy_agree: this.privacy_agree.checked
+        privacy_agree: this.privacy_agree.checked,
+        photo_agree: this.photo_agree.checked
     };
 
     try {
         await fetch(
-          'https://script.google.com/macros/s/AKfycbwCtHwvM-aH1imsRd40GWl7HlO-Pya51KtVmH9TpPdgiBWaD-Td11vrP94ZhqD8LZY/exec',
+          'https://script.google.com/macros/s/AKfycbxSy3BJIybyyYctDrIiw-tPkDGc4Z9tOumuklUd7HXyCXmEew13il2N3oiD6u8ngZY/exec',
           {
             method: 'POST',
             mode: 'no-cors',
