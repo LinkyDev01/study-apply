@@ -25,26 +25,6 @@ function validateStep(stepNumber) {
     const step = document.getElementById(`step${stepNumber}`);
     const requiredInputs = step.querySelectorAll('[required]');
 
-    if (stepNumber === 3) {
-        const input = step.querySelector('#photoInput');
-        if (!input.files || input.files.length === 0) {
-            alert('사진을 선택해주세요.');
-            return false;
-        }
-        // 파일 크기 체크 (10MB 이하)
-        const file = input.files[0];
-        const maxSize = 10 * 1024 * 1024; // 10MB
-        if (file.size > maxSize) {
-            alert('사진 파일 크기는 10MB 이하로 선택해주세요.');
-            return false;
-        }
-        // 이미지 파일 타입 체크
-        if (!file.type.startsWith('image/')) {
-            alert('이미지 파일만 업로드 가능합니다.');
-            return false;
-        }
-    }
-
     for (let input of requiredInputs) {
         // 체크박스는 checked 속성으로 체크
         if (input.type === 'checkbox') {
@@ -176,85 +156,44 @@ document.getElementById('applicationForm').addEventListener('submit', async func
 
     if (!validateStep(3)) return;
 
-    const fileInput = document.getElementById('photoInput');
-    const file = fileInput.files[0];
-
-    if (!file) {
-        alert('사진을 선택해주세요.');
-        return;
-    }
-
     // 로딩 오버레이 표시
     const loadingOverlay = document.getElementById('loadingOverlay');
     loadingOverlay.style.display = 'flex';
 
-    const reader = new FileReader();
-
-    reader.onload = async () => {
-        const base64 = reader.result.split(',')[1];
-
-        const payload = {
-            name: this.name.value,
-            language: this.language.value,
-            class: this.class.value,
-            level: this.level.value,
-            gender: this.gender.value,
-            age: this.age.value,
-            phone: this.phone.value,
-            job: this.job.value || '',
-            instagram: this.instagram.value || '',
-            introduction: this.introduction.value,
-            source: this.source.value || '',
-            referrer: this.referrer.value || '',
-            privacy_agree: this.privacy_agree.checked,
-            photoBase64: base64,
-            photoType: file.type
-        };
-
-        try {
-            await fetch(
-              'https://script.google.com/macros/s/AKfycbzV21I9aTB92ncblg5kqCFcoNxOKAIm4nBrRXkBpdojd5D6EpPksyIRESoNw12XBBA/exec',
-              {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-              }
-            );
-
-            alert('신청이 완료되었습니다!');
-            window.location.replace('https://linky-study-homepage.vercel.app/');
-        } catch (err) {
-            alert('전송 중 오류가 발생했습니다.');
-        } finally {
-            // 로딩 오버레이 숨김
-            loadingOverlay.style.display = 'none';
-        }
+    const payload = {
+        name: this.name.value,
+        month: this.month.value,
+        language: this.language.value,
+        class: this.class.value,
+        level: this.level.value,
+        gender: this.gender.value,
+        age: this.age.value,
+        phone: this.phone.value,
+        job: this.job.value || '',
+        instagram: this.instagram.value || '',
+        introduction: this.introduction.value,
+        source: this.source.value || '',
+        referrer: this.referrer.value || '',
+        privacy_agree: this.privacy_agree.checked
     };
 
-    reader.readAsDataURL(file);
+    try {
+        await fetch(
+          'https://script.google.com/macros/s/AKfycbwCtHwvM-aH1imsRd40GWl7HlO-Pya51KtVmH9TpPdgiBWaD-Td11vrP94ZhqD8LZY/exec',
+          {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          }
+        );
+
+        alert('신청이 완료되었습니다!');
+        window.location.replace('https://linky-study-homepage.vercel.app/');
+    } catch (err) {
+        alert('전송 중 오류가 발생했습니다.');
+    } finally {
+        // 로딩 오버레이 숨김
+        loadingOverlay.style.display = 'none';
+    }
 });
-
-
-// 사진 미리보기 기능
-const photoInput = document.getElementById('photoInput');
-const photoPreview = document.getElementById('photoPreview');
-const fileNameDisplay = document.getElementById('fileNameDisplay');
-
-if (photoInput && photoPreview && fileNameDisplay) {
-    photoInput.addEventListener('change', function(e) {
-        const file = e.target.files[0];
-        if (file && file.type.startsWith('image/')) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                photoPreview.src = e.target.result;
-                photoPreview.style.display = 'block';
-            };
-            reader.readAsDataURL(file);
-            fileNameDisplay.textContent = file.name;
-        } else {
-            photoPreview.style.display = 'none';
-            fileNameDisplay.textContent = '선택된 파일 없음';
-        }
-    });
-}
