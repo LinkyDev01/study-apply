@@ -596,7 +596,7 @@ section:last-of-type {
 }
 
 .application-form {
-    max-width: 600px;
+    max-width: 500px;
     margin: 0 auto;
 }
 
@@ -607,7 +607,7 @@ section:last-of-type {
     align-items: center;
     gap: 40px;
     margin: 60px 0 50px;
-    max-width: 600px;
+    max-width: 300px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -620,6 +620,7 @@ section:last-of-type {
     position: relative;
     opacity: 0.4;
     transition: all 0.3s ease;
+    flex: 1;
 }
 
 .progress-step.active {
@@ -666,17 +667,17 @@ section:last-of-type {
 /* Form Steps */
 .form-step {
     display: none;
-    animation: fadeIn 0.5s ease;
 }
 
 .form-step.active {
     display: block;
+    animation: slideIn 0.4s ease;
 }
 
-@keyframes fadeIn {
+@keyframes slideIn {
     from {
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateX(30px);
     }
     to {
         opacity: 1;
@@ -765,6 +766,14 @@ section:last-of-type {
     outline: none;
     border-color: var(--accent-color);
     background: var(--light-green);
+}
+
+.form-input:not(:placeholder-shown):not(:focus) {
+    border: 2px solid var(--medium-green);
+}
+
+select.form-input:not([value=""]):not(:focus) {
+    border: 2px solid var(--medium-green);
 }
 
 .form-input::placeholder {

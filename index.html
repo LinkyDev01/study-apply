@@ -28,7 +28,7 @@
                 <p class="section-description">
                     나랑 회화 배울 사람!<br>
                     회화를 입문하고 싶은 분들을 모집합니다!<br>
-                    <strong>2026년 3월 일본어/중국어/스페인어 회화를 입문하고 싶은 분들을 모집합니다!</strong>
+                    <strong>2026년 3월 일본어/중국어 회화를 입문하고 싶은 분들을 모집합니다!</strong>
                 </p>
             </div>
 
@@ -36,20 +36,20 @@
             <div class="form-progress">
                 <div class="progress-step active" data-step="1">
                     <div class="progress-number">1</div>
-                    <div class="progress-label">필수 정보</div>
+                    <div class="progress-label">수강 정보</div>
                 </div>
                 <div class="progress-step" data-step="2">
                     <div class="progress-number">2</div>
-                    <div class="progress-label">추가 정보</div>
+                    <div class="progress-label">개인 정보</div>
                 </div>
                 <div class="progress-step" data-step="3">
                     <div class="progress-number">3</div>
-                    <div class="progress-label">동의</div>
+                    <div class="progress-label">추가 정보</div>
                 </div>
             </div>
 
             <form class="application-form" id="applicationForm">
-                <!-- Step 1: 필수 정보 -->
+                <!-- Step 1: 수강 정보 -->
                 <div class="form-step active" id="step1">
                     <div class="form-group">
                         <label class="form-label">이름 *</label>
@@ -111,6 +111,11 @@
                             </label>
                         </div>
                     </div>
+                    <button type="button" class="submit-button" id="nextStep1">다음 단계</button>
+                </div>
+
+                <!-- Step 2: 개인 정보 -->
+                <div class="form-step" id="step2">
                     <div class="form-group">
                         <label class="form-label">성별 *</label>
                         <div class="radio-group">
@@ -137,16 +142,19 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label">자기소개 및 신청 계기 (200자 이하) *</label>
-                        <textarea name="introduction" class="form-input textarea-resize" required placeholder="일본어 학습 동기, 목표, 신청 계기 등을 작성해주세요" maxlength="200" rows="4"></textarea>
+                        <textarea name="introduction" class="form-input textarea-resize" required placeholder="학습 동기, 목표, 신청 계기 등을 작성해주세요" maxlength="200" rows="4"></textarea>
                         <div class="char-counter">
                             <span id="charCount">0</span> / 200자
                         </div>
                     </div>
-                    <button type="button" class="submit-button" id="nextStep1">다음 단계</button>
+                    <div class="form-buttons">
+                        <button type="button" class="btn-previous" id="prevStep2">이전</button>
+                        <button type="button" class="btn-next" id="nextStep2">다음 단계</button>
+                    </div>
                 </div>
 
-                <!-- Step 2: 추가 정보 -->
-                <div class="form-step" id="step2">
+                <!-- Step 3: 추가 정보 & 동의 -->
+                <div class="form-step" id="step3">
                     <div class="form-group">
                         <label class="form-label">직업 (선택)</label>
                         <input type="text" name="job" class="form-input" placeholder="예: 마케터, 개발자 등">
@@ -169,14 +177,6 @@
                         <label class="form-label">추천인 (선택)</label>
                         <input type="text" name="referrer" class="form-input" placeholder="추천해주신 분의 성함">
                     </div>
-                    <div class="form-buttons">
-                        <button type="button" class="btn-previous" id="prevStep2">이전</button>
-                        <button type="button" class="btn-next" id="nextStep2">다음 단계</button>
-                    </div>
-                </div>
-
-                <!-- Step 3: 동의 -->
-                <div class="form-step" id="step3">
                     <div class="form-group form-privacy-section">
                         <label class="form-checkbox-label">
                             <input type="checkbox" name="privacy_agree" required>
